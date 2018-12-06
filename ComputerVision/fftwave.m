@@ -21,8 +21,12 @@ if (v <= sz/2)
 else
   vc = v - 1 - sz;
 end
-wavelength = 0.0;  % Replace by correct expression
-amplitude = 0.0;   % Replace by correct expression
+omega1 = 2*pi*uc/sz;
+omega2 = 2*pi*uc/sz;
+wavel =(2*pi)/(norm([omega1 omega2]));
+wavelength = wavel;  % Correct Wavelength
+amplitude = max(Fhat(:))/sz;   % Correct Amplitude
+figure(1)
 subplot(3, 2, 2);
 showgrey(fftshift(Fhat));
 title(sprintf('centered Fhat: (uc, vc) = (%d, %d)', uc, vc))
@@ -38,3 +42,8 @@ title(sprintf('abs(F) (amplitude %f)', amplitude))
 subplot(3, 2, 6);
 showgrey(angle(F), 64, -pi, pi);
 title(sprintf('angle(F) (wavelength %f)', wavelength))
+% figure(2)
+% surf(real(F))
+% xlabel('x pixels')
+% ylabel('y pixels')
+% zlabel('wave magnitude')
